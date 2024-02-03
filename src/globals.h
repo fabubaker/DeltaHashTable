@@ -1,3 +1,5 @@
+#pragma once
+
 #define HKEY_BITS (128) // In the paper, hkeys are 16 bytes
 
 #define BUCKET_BITS (8)

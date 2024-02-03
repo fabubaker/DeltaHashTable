@@ -1,3 +1,5 @@
+#pragma once
+
 #include "entries.h"
 #include "globals.h"
 

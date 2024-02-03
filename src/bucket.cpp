@@ -5,5 +5,5 @@ void Bucket::insert(hkey hkey, payload payload) {
 }
 
 int Bucket::get(hkey hkey) {
-  return;
+  return 0;
 }
