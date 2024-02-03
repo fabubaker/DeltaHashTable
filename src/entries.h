@@ -1,7 +1,7 @@
 #pragma once
 
 #include <cstdint>
-#include "globals.h"
+#include "constants.h"
 
 /*
  *                 hkey
@@ -16,3 +16,8 @@ typedef uint64_t ukey[4]; // Assume ukey to be 32 bytes
 typedef uint64_t payload[4]; // Assume payload to be 32 bytes
 typedef uint64_t hkey[2];
 
+struct hkey {
+  uint64_t hkey[2];
+
+
+};

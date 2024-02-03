@@ -1,7 +1,7 @@
 #pragma once
 
 #include "entries.h"
-#include "globals.h"
+#include "constants.h"
 
 struct Bucket {
   char lslot_bits[BUCKET_SIZE / 8];
