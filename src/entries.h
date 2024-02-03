@@ -1,6 +1,6 @@
 #pragma once
 
-#include "bitvector.h"
+#include <cstdint>
 #include "globals.h"
 
 /*
@@ -12,6 +12,7 @@
  *
  */
 
-typedef BitVector<32> ukey; // Assume ukey to be 32 bytes
-typedef BitVector<32> payload; // Assume payload to be 32 bytes
-typedef BitVector<HKEY_BITS> hkey;
+typedef uint64_t ukey[4]; // Assume ukey to be 32 bytes
+typedef uint64_t payload[4]; // Assume payload to be 32 bytes
+typedef uint64_t hkey[2];
+
