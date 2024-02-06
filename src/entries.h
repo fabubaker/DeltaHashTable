@@ -20,5 +20,5 @@ struct hkey {
 
   uint32_t get_bucket_id();
   uint32_t get_lslot_id();
-  uint32_t get_fingerprint();
+  __uint128_t get_fingerprint();
 };

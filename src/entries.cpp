@@ -20,3 +20,11 @@ uint32_t hkey::get_lslot_id() {
 
   return lslot_id;
 }
+
+__uint128_t hkey::get_fingerprint() {
+  // Grab only the FINGERPRINT_BITS
+  __uint128_t one = 0x1;
+  __uint128_t fingerprint_mask = (one << FINGERPRINT_BITS) - 1;
+
+  return hkey & fingerprint_mask;
+}
