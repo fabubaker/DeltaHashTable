@@ -16,7 +16,7 @@ typedef uint64_t ukey[4]; // Assume ukey to be 32 bytes
 typedef uint64_t payload[4]; // Assume payload to be 32 bytes
 
 struct hkey {
-  uint64_t hkey[2]; // hkeys are defined to be 16 bytes
+  __uint128_t hkey; // hkeys are defined to be 16 bytes
 
   uint32_t get_bucket_id();
   uint32_t get_lslot_id();
