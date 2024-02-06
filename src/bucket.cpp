@@ -1,6 +1,6 @@
 #include "bucket.h"
 
-void Bucket::insert(hkey hkey, payload payload) {
+void Bucket::insert(hkey hkey, data *payload) {
   return;
 }
 

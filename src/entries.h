@@ -13,7 +13,6 @@
  */
 
 typedef uint64_t ukey[4]; // Assume ukey to be 32 bytes
-typedef uint64_t payload[4]; // Assume payload to be 32 bytes
 
 struct hkey {
   __uint128_t hkey; // hkeys are defined to be 16 bytes
@@ -21,4 +20,15 @@ struct hkey {
   uint32_t get_bucket_id();
   uint32_t get_lslot_id();
   __uint128_t get_fingerprint();
+};
+
+/*
+ * Simulate storing data entries on disk.
+ * For now, keep them in memory.
+ * Thus, payloads are just pointers to data structs.
+ */
+struct data {
+  ukey user_key;
+  hkey hash_key;
+  int value;
 };
