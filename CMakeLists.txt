@@ -6,6 +6,5 @@ project(DeltaHashTable VERSION 0.0.1 LANGUAGES C CXX)
 
 enable_testing()
 
-add_library(bucket OBJECT src/bucket.h src/bucket.cpp)
-
+add_subdirectory(src)
 add_subdirectory(tests)
