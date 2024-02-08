@@ -16,10 +16,10 @@
 /* For eg, say we have:
  * - ALLOTTED_BITS_PER_ENTRY = 4
  * - AVERAGE_NUM_ENTRIES_PER_LSLOT = 1
- * - NUM_LSLOTS = 1024
+ * - NUM_LSLOTS = 256
  *
  * Then:
- * - BUCKET_SIZE = 4 * 1 * 1024 = 4096
+ * - BUCKET_SIZE = 4 * 1 * 256 = 1024
  */
 #define BUCKET_SIZE (ALLOTTED_BITS_PER_ENTRY * AVERAGE_NUM_ENTRIES_PER_LSLOT * NUM_LSLOTS)
 #define MAX_LSLOT_SIZE (BUCKET_SIZE) // Since an lslot can technically occupy a whole bucket
