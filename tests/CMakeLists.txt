@@ -19,3 +19,8 @@ add_executable(entries_tests entries_tests.cpp)
 target_include_directories(entries_tests PRIVATE ../src)
 target_link_libraries(entries_tests PRIVATE GTest::gtest_main $<TARGET_OBJECTS:bucket>)
 gtest_discover_tests(entries_tests)
+
+add_executable(lslots_tests lslots_tests.cpp)
+target_include_directories(lslots_tests PRIVATE ../src)
+target_link_libraries(lslots_tests PRIVATE GTest::gtest_main $<TARGET_OBJECTS:bucket>)
+gtest_discover_tests(lslots_tests)
