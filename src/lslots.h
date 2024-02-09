@@ -8,7 +8,7 @@
  */
 
 struct Lslots {
-  BitVector<BUCKET_SIZE> bits; // Lslots are a bunch of bits anyways...
+  BitVector bits; // Lslots are a bunch of bits anyways...
 
   /*
    * @param fp The fingerprint to match within the lslot

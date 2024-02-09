@@ -24,3 +24,8 @@ add_executable(lslots_tests lslots_tests.cpp)
 target_include_directories(lslots_tests PRIVATE ../src)
 target_link_libraries(lslots_tests PRIVATE GTest::gtest_main $<TARGET_OBJECTS:bucket>)
 gtest_discover_tests(lslots_tests)
+
+add_executable(bitvector_tests bitvector_tests.cpp)
+target_include_directories(bitvector_tests PRIVATE ../src)
+target_link_libraries(bitvector_tests PRIVATE GTest::gtest_main $<TARGET_OBJECTS:bucket>)
+gtest_discover_tests(bitvector_tests)

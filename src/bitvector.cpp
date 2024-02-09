@@ -1,33 +1,38 @@
 #include "bitvector.h"
 
-template <uint32_t NBITS>
-uint32_t BitVector<NBITS>::parse_unary(position_t start) {
-
+uint32_t BitVector::parse_unary(position_t start) {
+  return 0;
 };
 
+count_t BitVector::rank_1(position_t start, position_t end) {
+  count_t rank = 0;
 
-template <uint32_t NBITS>
-count_t BitVector<NBITS>::rank_1(position_t start, position_t end) {
-  position_t cur = start;
   position_t start_index = start / 64;
   position_t start_offset = start % 64;
   position_t end_index = end / 64;
   position_t end_offset = end % 64;
 
-  count_t count = 0;
+  // We might have to traverse multiple words
+  for (position_t cur_index = start_index; cur_index <= end_index; cur_index++) {
+    uint64_t word = words[cur_index];
 
-  // Everything's in the same word
-  if (start_index == end_index) {
-    // Mask out the lower end
-    uint64_t mask = (1 << (64 - end_offset)) - 1;
-    mask = ~mask;
-    uint64_t word = (words[start_index] & mask);
+    if (cur_index == start_index) {
+      // Remove bits before 'start_offset'
+      word = word << start_offset >> start_offset;
+    }
 
-    // Get rid of the upper end
-    word <<= start_offset;
+    if (cur_index == end_index) {
+      // Edge case: if end_offset is zero, ignore word
+      if (end_offset == 0) {
+        word = 0;
+      } else {
+        // Remove bits after 'end_offset'
+        word >>= (64 - end_offset);
+      }
+    }
 
-    return popcount(word);
+    rank += popcount(word);
   }
 
-  // We have to traverse multiple words
+  return rank;
 }

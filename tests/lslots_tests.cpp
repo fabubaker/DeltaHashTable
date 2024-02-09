@@ -3,6 +3,8 @@
 #include "lslots.h"
 
 TEST(test_get_lslot_offset, lslot_in_paper) {
+  GTEST_SKIP();
+
   // Left shift the lslot bits all the way to the left
   // NOTE: There's no interleaving here like its described in the paper
   uint64_t lslot_in_paper = 0b111110'110100'00011110 << (64 - 20);

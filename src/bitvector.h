@@ -1,6 +1,7 @@
 #pragma once
 
 #include <cstdint>
+#include "entries.h"
 
 /*
  * Bitvector positions go from left to right. Eg:
@@ -14,9 +15,8 @@ typedef uint32_t count_t;
 
 #define popcount __builtin_popcountll
 
-template <uint32_t NBITS>
 struct BitVector {
-  uint64_t words[NBITS / 64];
+  uint64_t words[BUCKET_SIZE / 64] = { 0 };
 
   /* Returns the number of occurrences upto 'end' (not inclusive) */
   count_t rank_1(position_t start, position_t end);
