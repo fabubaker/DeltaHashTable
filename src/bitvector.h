@@ -12,7 +12,7 @@
 typedef uint32_t position_t;
 typedef uint32_t count_t;
 
-#define popcount __builtin_popcount
+#define popcount __builtin_popcountll
 
 template <uint32_t NBITS>
 struct BitVector {
