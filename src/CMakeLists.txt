@@ -5,3 +5,5 @@ add_library(
   lslots.h lslots.cpp
   bitvector.h bitvector.cpp
 )
+
+target_compile_options(bucket PRIVATE "-mbmi2")

@@ -1,3 +1,4 @@
+#include <immintrin.h>
 #include "bitvector.h"
 
 uint32_t BitVector::parse_unary(position_t start) {
