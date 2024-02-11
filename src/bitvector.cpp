@@ -1,9 +1,6 @@
 #include <immintrin.h>
 #include "bitvector.h"
-
-uint32_t BitVector::parse_unary(position_t start) {
-  return 0;
-};
+#include <iostream>
 
 count_t BitVector::rank_1(position_t start, position_t end) {
   count_t rank = 0;
@@ -37,3 +34,31 @@ count_t BitVector::rank_1(position_t start, position_t end) {
 
   return rank;
 }
+
+/* Parse unary encoded bitstring located at 'start' */
+uint32_t BitVector::parse_unary(position_t start) {
+  count_t count = 0;
+
+  position_t start_index = start / 64;
+  position_t start_offset = start % 64;
+
+  uint64_t word = words[start_index];
+
+  // Remove bits before 'start_offset'
+  word = word << start_offset;
+
+  // Flip bits
+  word = ~word;
+
+  // Count leading zeroes
+  count = __builtin_clzl(word);
+
+  /* Edge case: The unary string can extend along multiple words */
+  if (count == (64 - start_offset)) {
+    /* Continue iterating through words until fully parsed */
+    position_t new_start = start + (64 - start_offset);
+    count += parse_unary(new_start);
+  }
+
+  return count;
+};
