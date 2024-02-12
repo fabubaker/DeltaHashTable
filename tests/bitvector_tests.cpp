@@ -51,3 +51,39 @@ TEST(test_parse_unary, two_words) {
 
   EXPECT_EQ(bits.parse_unary(start), 12);
 }
+
+TEST(test_skip_indices_field, one_word) {
+  BitVector bits;
+  uint64_t lslot_in_paper = (uint64_t) 0b111110'110100'00011110 << (64 - 20);
+
+  bits.words[0] = lslot_in_paper;
+
+  position_t start = 12;
+  position_t num_nodes = 4;
+
+  EXPECT_EQ(bits.skip_indices_field(start, num_nodes), 20);
+}
+
+TEST(test_skip_indices_field, two_words) {
+  BitVector bits;
+
+  bits.words[0] = 0b000;
+  bits.words[1] = (uint64_t) 0b11110 << (64 - 5);
+
+  position_t start = 61;
+  position_t num_nodes = 4;
+
+  EXPECT_EQ(bits.skip_indices_field(start, num_nodes), 69);
+}
+
+TEST(test_skip_indices_field, unary_value_spans_two_words) {
+  BitVector bits;
+
+  bits.words[0] = 0b00011;
+  bits.words[1] = (uint64_t) 0b110 << (64 - 3);
+
+  position_t start = 59;
+  position_t num_nodes = 4;
+
+  EXPECT_EQ(bits.skip_indices_field(start, num_nodes), 67);
+}
