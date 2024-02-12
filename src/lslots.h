@@ -11,6 +11,16 @@ struct Lslots {
   BitVector bits; // Lslots are a bunch of bits anyways...
 
   /*
+   * Returns the immediate index after the lslot at 'start'
+   */
+  position_t skip_lslot(position_t start);
+
+  /*
+   * @param lslot_id The lslot id to retrieve
+   */
+  position_t get_lslot_start(count_t lslot_id);
+
+  /*
    * @param fp The fingerprint to match within the lslot
    * @param start The starting position of the lslot in the bitvector
    */

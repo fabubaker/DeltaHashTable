@@ -26,6 +26,10 @@ struct BitVector {
   position_t select_1(position_t start, count_t i);
   position_t select_0(position_t start, count_t i);
 
-  uint32_t parse_unary(position_t start);
+  count_t parse_unary(position_t start);
+
+  /*
+   * Returns position immediately after indices field
+   */
   position_t skip_indices_field(position_t start, count_t num_nodes);
 };

@@ -36,7 +36,7 @@ count_t BitVector::rank_1(position_t start, position_t end) {
 }
 
 /* Parse unary encoded bitstring located at 'start' */
-uint32_t BitVector::parse_unary(position_t start) {
+count_t BitVector::parse_unary(position_t start) {
   count_t count = 0;
   position_t start_index = start / 64;
   position_t start_offset = start % 64;
@@ -61,7 +61,6 @@ uint32_t BitVector::parse_unary(position_t start) {
   return count;
 };
 
-/* Return position immediately after indices field */
 position_t BitVector::skip_indices_field(position_t start, count_t num_nodes) {
   position_t start_index = start / 64;
   position_t cur_index = start_index;
