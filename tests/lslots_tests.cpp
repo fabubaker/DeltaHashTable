@@ -36,11 +36,21 @@ TEST(test_get_lslot_offset, lslot_in_paper) {
   uint64_t lslot_in_paper = (uint64_t) 0b111110'110100'00011110 << (64 - 20);
 
   // Left shift the fp bits all the way to the left
-  __uint128_t fingerprint_in_paper = (__uint128_t) 0b101101 << (128 - 6);
+  __uint128_t fingerprint_e1 = (__uint128_t) 0b010011 << (128 - 6);
+  __uint128_t fingerprint_e2 = (__uint128_t) 0b011001 << (128 - 6);
+  __uint128_t fingerprint_e3 = (__uint128_t) 0b101100 << (128 - 6);
+  __uint128_t fingerprint_e4 = (__uint128_t) 0b001001 << (128 - 6);
+  __uint128_t fingerprint_e5 = (__uint128_t) 0b101101 << (128 - 6);
 
   Lslots lslots;
   lslots.bits.words[0] = lslot_in_paper;
 
   position_t start = 0;
-  EXPECT_EQ(lslots.get_lslot_offset(fingerprint_in_paper, start), 4);
+
+  EXPECT_EQ(lslots.get_lslot_offset(fingerprint_e1, start), 1);
+  EXPECT_EQ(lslots.get_lslot_offset(fingerprint_e2, start), 2);
+  EXPECT_EQ(lslots.get_lslot_offset(fingerprint_e3, start), 3);
+  EXPECT_EQ(lslots.get_lslot_offset(fingerprint_e4, start), 0);
+  EXPECT_EQ(lslots.get_lslot_offset(fingerprint_e5, start), 4);
+
 }
