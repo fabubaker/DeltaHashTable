@@ -87,3 +87,24 @@ TEST(test_skip_indices_field, unary_value_spans_two_words) {
 
   EXPECT_EQ(bits.skip_indices_field(start, num_nodes), 67);
 }
+
+TEST(test_parse_two_structure_bits, structure_in_one_word) {
+  BitVector bits;
+
+  bits.words[0] = 0b1100;
+
+  position_t start = 60;
+
+  EXPECT_EQ(bits.parse_two_structure_bits(start), 0b11);
+}
+
+TEST(test_parse_two_structure_bits, structure_spans_two_words) {
+  BitVector bits;
+
+  bits.words[0] = 0b1;
+  bits.words[1] = (uint64_t) 0b1 << 63;
+
+  position_t start = 63;
+
+  EXPECT_EQ(bits.parse_two_structure_bits(start), 0b11);
+}

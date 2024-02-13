@@ -32,4 +32,9 @@ struct BitVector {
    * Returns position immediately after indices field
    */
   position_t skip_indices_field(position_t start, count_t num_nodes);
+
+  /*
+   * @param start The start of the structure bits to parse
+   */
+  count_t parse_two_structure_bits(position_t start);
 };

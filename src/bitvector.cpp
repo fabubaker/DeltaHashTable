@@ -104,3 +104,31 @@ position_t BitVector::skip_indices_field(position_t start, count_t num_nodes) {
 
   return cur_index * 64 + cur_offset;
 }
+
+count_t BitVector::parse_two_structure_bits(position_t start) {
+  count_t structure = 0;
+  position_t start_index = start / 64;
+  position_t start_offset = start % 64;
+  uint64_t word = words[start_index];
+
+  // The 2nd bit is in the next word
+  if (start_offset == 63) {
+    // Grab the 1st bit
+    structure = 0x1 & word;
+    structure <<= 1;
+
+    // Grab the 2nd bit
+    uint64_t next_word = words[start_index + 1];
+    uint64_t second_bit = 0x1 & (next_word >> 63);
+
+    // Combine both bits
+    structure = structure | second_bit;
+  } else {
+    /* NOTE: I think the PEXT instruction can be used here,
+     * assuming that results in fewer instructions.
+    */
+    structure = word << (start_offset) >> 62;
+  }
+
+  return structure;
+}
