@@ -32,3 +32,7 @@ struct data {
   hkey hash_key;
   int value;
 };
+
+uint32_t inline get_bit_at_index(__uint128_t fp, uint32_t idx) {
+  return 0x1 & (fp << idx >> 127);
+}

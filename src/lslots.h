@@ -24,5 +24,5 @@ struct Lslots {
    * @param fp The fingerprint to match within the lslot
    * @param start The starting position of the lslot in the bitvector
    */
-  uint32_t get_lslot_offset(__uint128_t fp, position_t start);
+  int32_t get_lslot_offset(__uint128_t fp, position_t start);
 };
